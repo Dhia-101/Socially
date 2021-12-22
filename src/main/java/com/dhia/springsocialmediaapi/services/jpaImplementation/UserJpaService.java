@@ -30,8 +30,8 @@ public class UserJpaService implements UserService {
     }
 
     @Override
-    public User save(User object) {
-        return null;
+    public User save(User user) {
+        return userRepository.save(user);
     }
 
     @Override
