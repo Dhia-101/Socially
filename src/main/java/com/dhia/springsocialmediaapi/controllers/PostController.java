@@ -20,7 +20,7 @@ public class PostController {
         this.postService = postService;
     }
 
-    @GetMapping("/")
+    @GetMapping({"", "/"})
     public Set<Post> getAllPosts() {
         return postService.findAll();
     }
