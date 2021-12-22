@@ -17,6 +17,13 @@ public class DataLoader implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
+
+        loadPosts();
+
+
+    }
+
+    private void loadPosts() {
         Post post1 = new Post("post1");
         Post post2 = new Post("post2");
         Post post3 = new Post("post3");
@@ -25,5 +32,7 @@ public class DataLoader implements CommandLineRunner {
         postRepository.save(post2);
         postRepository.save(post3);
 
+        System.out.println("posts loaded...");
     }
+
 }
