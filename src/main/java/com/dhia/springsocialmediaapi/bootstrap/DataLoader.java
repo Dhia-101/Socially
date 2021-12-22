@@ -2,7 +2,6 @@ package com.dhia.springsocialmediaapi.bootstrap;
 
 import com.dhia.springsocialmediaapi.model.Post;
 import com.dhia.springsocialmediaapi.repositories.PostRepository;
-import com.dhia.springsocialmediaapi.services.PostService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
@@ -19,8 +18,6 @@ public class DataLoader implements CommandLineRunner {
     public void run(String... args) throws Exception {
 
         loadPosts();
-
-
     }
 
     private void loadPosts() {
