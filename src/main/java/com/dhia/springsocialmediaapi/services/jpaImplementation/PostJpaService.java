@@ -25,8 +25,8 @@ public class PostJpaService implements PostService {
     }
 
     @Override
-    public Post findById(Long aLong) {
-        return null;
+    public Post findById(Long postId) {
+        return postRepository.findById(postId).orElse(null);
     }
 
     @Override
@@ -35,7 +35,7 @@ public class PostJpaService implements PostService {
     }
 
     @Override
-    public void deleteById(Long aLong) {
-
+    public void deleteById(Long postId) {
+        postRepository.deleteById(postId);
     }
 }
