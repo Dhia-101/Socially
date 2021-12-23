@@ -2,12 +2,11 @@ package com.dhia.springsocialmediaapi.controllers;
 
 import com.dhia.springsocialmediaapi.model.Post;
 import com.dhia.springsocialmediaapi.services.PostService;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.HashSet;
 import java.util.Set;
 
 @RestController
@@ -20,6 +19,7 @@ public class PostController {
         this.postService = postService;
     }
 
+    @ApiOperation("get all posts")
     @GetMapping({"", "/"})
     public Set<Post> getAllPosts() {
         return postService.findAll();
