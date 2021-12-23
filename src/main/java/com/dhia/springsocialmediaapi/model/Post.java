@@ -6,6 +6,9 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 @Getter
@@ -15,6 +18,8 @@ import javax.persistence.*;
 @Table(name = "post")
 public class Post extends BaseEntity {
 
+    @NotBlank
+    @Size(min = 3, max = 255)
     @Column(name = "content")
     private String content;
 

@@ -44,8 +44,6 @@ public class UserJpaService implements UserService {
 
     @Override
     public List<Post> findUserPosts(Long userId) {
-        List<Post> posts = new ArrayList<>();
-        userRepository.findById(userId).orElse(null).getPosts().forEach(posts::add);
-        return posts;
+        return new ArrayList<>(userRepository.findById(userId).orElse(null).getPosts());
     }
 }

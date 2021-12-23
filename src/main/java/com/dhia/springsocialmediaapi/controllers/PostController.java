@@ -6,6 +6,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.Set;
 
 
@@ -34,7 +35,7 @@ public class PostController {
 
     @ApiOperation(value = "save a post")
     @PostMapping(value = "")
-    public Post savePost(@RequestBody Post post) {
+    public Post savePost(@Valid @RequestBody Post post) {
         // TODO: check if id already exists
         // TODO: add validation
         return postService.save(post);
