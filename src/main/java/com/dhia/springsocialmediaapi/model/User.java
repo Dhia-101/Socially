@@ -1,6 +1,7 @@
 package com.dhia.springsocialmediaapi.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -24,9 +25,11 @@ public class User extends BaseEntity{
     }
 
     @Column
+    @ApiModelProperty(value = "this is the user first name", required = true)
     private String firstName;
 
     @Column
+    @ApiModelProperty(value = "this is the user last name", required = true)
     private String lastName;
 
     @JsonIgnore
