@@ -1,7 +1,7 @@
 package com.dhia.springsocialmediaapi.services;
 
-import com.dhia.springsocialmediaapi.model.Post;
-import com.dhia.springsocialmediaapi.model.User;
+import com.dhia.springsocialmediaapi.domain.Post;
+import com.dhia.springsocialmediaapi.domain.User;
 
 import java.util.List;
 

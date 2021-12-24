@@ -1,4 +1,4 @@
-package com.dhia.springsocialmediaapi.model;
+package com.dhia.springsocialmediaapi.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.annotations.ApiModelProperty;

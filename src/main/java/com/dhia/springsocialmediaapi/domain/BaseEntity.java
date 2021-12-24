@@ -1,4 +1,4 @@
-package com.dhia.springsocialmediaapi.model;
+package com.dhia.springsocialmediaapi.domain;
 
 import lombok.Getter;
 import lombok.Setter;

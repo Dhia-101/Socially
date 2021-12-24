@@ -1,7 +1,7 @@
 package com.dhia.springsocialmediaapi.services.jpaImplementation;
 
-import com.dhia.springsocialmediaapi.model.Post;
-import com.dhia.springsocialmediaapi.model.User;
+import com.dhia.springsocialmediaapi.domain.Post;
+import com.dhia.springsocialmediaapi.domain.User;
 import com.dhia.springsocialmediaapi.repositories.UserRepository;
 import com.dhia.springsocialmediaapi.services.UserService;
 import org.springframework.stereotype.Service;
@@ -44,6 +44,11 @@ public class UserJpaService implements UserService {
 
     @Override
     public List<Post> findUserPosts(Long userId) {
-        return new ArrayList<>(userRepository.findById(userId).orElse(null).getPosts());
+        return null;
     }
+
+//    @Override
+//    public List<Post> findUserPosts(Long userId) {
+//        return new ArrayList<>(userRepository.findById(userId).orElse(null).getPosts());
+//    }
 }
