@@ -37,10 +37,11 @@ public class PostJpaService implements PostService {
                 .orElse(null);
     }
 
-//    @Override
-//    public Post save(Post post) {
-//        return postRepository.save(post);
-//    }
+    @Override
+    public PostDTO save(PostDTO postDTO) {
+        Post savedPost = postRepository.save(postMapper.PostDTOToPost(postDTO));
+        return postMapper.postToPostDTO(savedPost);
+    }
 
 //    @Override
 //    public void deleteById(Long postId) {

@@ -1,17 +1,13 @@
 package com.dhia.springsocialmediaapi.controllers;
 
-import com.dhia.springsocialmediaapi.domain.Post;
 import com.dhia.springsocialmediaapi.model.PostDTO;
 import com.dhia.springsocialmediaapi.services.PostService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
-import java.util.Set;
 
 
 @RestController
@@ -37,13 +33,11 @@ public class PostController {
         return postService.findById(postId);
     }
 
-
-
-//    @ApiOperation(value = "save a post")
-//    @PostMapping(value = "")
-//    public Post savePost(@Valid @RequestBody Post post) {
-//        return postService.save(post);
-//    }
+    @ApiOperation(value = "save a post")
+    @PostMapping(value = "")
+    public PostDTO savePost(@Valid @RequestBody PostDTO postDTO) {
+        return postService.save(postDTO);
+    }
 
 //     @ApiOperation(value = "get a specific post")
 //     @GetMapping(value = "/dto/{postId}")

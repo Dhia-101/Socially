@@ -33,6 +33,11 @@ public class UserJpaService implements UserService {
         return userRepository.findById(userId).orElse(null);
     }
 
+    @Override
+    public User save(User object) {
+        return null;
+    }
+
 //    @Override
 //    public User save(User user) {
 //        return userRepository.save(user);
