@@ -21,10 +21,11 @@ public class UserJpaService implements UserService {
     }
 
     @Override
-    public Set<User> findAll() {
-        Set<User> users = new HashSet<>();
-        userRepository.findAll().forEach(users::add);
-        return users;
+    public List<User> findAll() {
+//        Set<User> users = new HashSet<>();
+//        userRepository.findAll().forEach(users::add);
+//        return users;
+        return null;
     }
 
     @Override
@@ -32,15 +33,15 @@ public class UserJpaService implements UserService {
         return userRepository.findById(userId).orElse(null);
     }
 
-    @Override
-    public User save(User user) {
-        return userRepository.save(user);
-    }
+//    @Override
+//    public User save(User user) {
+//        return userRepository.save(user);
+//    }
 
-    @Override
-    public void deleteById(Long userId) {
-        userRepository.deleteById(userId);
-    }
+//    @Override
+//    public void deleteById(Long userId) {
+//        userRepository.deleteById(userId);
+//    }
 
     @Override
     public List<Post> findUserPosts(Long userId) {

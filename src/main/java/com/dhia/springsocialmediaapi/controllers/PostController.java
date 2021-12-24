@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 import java.util.Set;
 
 
@@ -24,11 +25,11 @@ public class PostController {
         this.postService = postService;
     }
 
-//    @ApiOperation("get all posts")
-//    @GetMapping("")
-//    public Set<Post> getAllPosts() {
-//        return postService.findAll();
-//    }
+    @ApiOperation("get all posts")
+    @GetMapping("")
+    public List<PostDTO> getAllPosts() {
+        return postService.findAll();
+    }
 
     @ApiOperation(value = "get a specific post")
     @GetMapping(value = "/{postId}")

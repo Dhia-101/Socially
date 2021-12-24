@@ -7,8 +7,7 @@ import com.dhia.springsocialmediaapi.repositories.PostRepository;
 import com.dhia.springsocialmediaapi.services.PostService;
 import org.springframework.stereotype.Service;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 @Service
 public class PostJpaService implements PostService {
@@ -22,12 +21,14 @@ public class PostJpaService implements PostService {
         this.postMapper = postMapper;
     }
 
-//    @Override
-//    public Set<Post> findAll() {
-//        Set<Post> posts = new HashSet<>();
-//        postRepository.findAll().forEach(posts::add);
-//        return posts;
-//    }
+    @Override
+    public List<PostDTO> findAll() {
+        List<PostDTO> posts = new ArrayList<>();
+        postRepository.findAll().forEach(post -> {
+            posts.add(postMapper.postToPostDTO(post));
+        });
+        return posts;
+    }
 
     @Override
     public PostDTO findById(Long postId) {
