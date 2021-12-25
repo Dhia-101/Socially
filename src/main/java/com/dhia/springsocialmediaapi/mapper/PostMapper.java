@@ -13,7 +13,7 @@ public interface PostMapper {
     @Mapping(source = "publisher.id", target = "publisherId")
     PostDTO postToPostDTO(Post post);
 
-    //TODO: map the publisher manually
+    @Mapping(source = "publisherId", target = "publisher.id")
     Post PostDTOToPost(PostDTO postDTO);
 
 }
