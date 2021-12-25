@@ -64,13 +64,9 @@ public class PostJpaService implements PostService {
         return postMapper.postToPostDTO(savedPost);
     }
 
-//    @Override
-//    public void deleteById(Long postId) {
-//        postRepository.deleteById(postId);
-//    }
+    @Override
+    public void delete(Long postId) {
+        postRepository.deleteById(postId);
+    }
 
-//    @Override
-//    public PostDTO findByIdDTO(Long id) {
-//        return null;
-//    }
 }

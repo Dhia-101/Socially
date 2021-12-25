@@ -45,11 +45,10 @@ public class PostController {
         return postService .update(postId, postDTO);
     }
 
-//     @ApiOperation(value = "get a specific post")
-//     @GetMapping(value = "/dto/{postId}")
-//     public PostDTO findByIdDTO(@PathVariable Long postId) {
-//        return new PostDTO(postService.findById(postId));
-//
-//     }
+    @ApiOperation(value = "delete a post")
+    @DeleteMapping(value = "/{postId}")
+    public void deletePost(@PathVariable Long postId) {
+        postService.delete(postId);
+    }
 
 }

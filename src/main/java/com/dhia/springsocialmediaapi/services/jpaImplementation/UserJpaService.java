@@ -6,10 +6,7 @@ import com.dhia.springsocialmediaapi.repositories.UserRepository;
 import com.dhia.springsocialmediaapi.services.UserService;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 @Service
 public class UserJpaService implements UserService {
@@ -42,6 +39,11 @@ public class UserJpaService implements UserService {
     @Override
     public User save(User object) {
         return null;
+    }
+
+    @Override
+    public void delete(Long aLong) {
+
     }
 
 //    @Override
