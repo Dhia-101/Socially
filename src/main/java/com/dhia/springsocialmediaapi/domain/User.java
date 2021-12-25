@@ -32,7 +32,6 @@ public class User extends BaseEntity{
     @ApiModelProperty(value = "this is the user last name", required = true)
     private String lastName;
 
-    @JsonIgnore
     @OneToMany(mappedBy = "publisher", cascade = CascadeType.ALL)
     private Set<Post> posts = new HashSet<>();
 
