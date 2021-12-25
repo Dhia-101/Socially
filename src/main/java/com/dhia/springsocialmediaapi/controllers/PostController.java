@@ -39,6 +39,12 @@ public class PostController {
         return postService.save(postDTO);
     }
 
+    @ApiOperation(value = "update a post")
+    @PutMapping(value = "/{postId}")
+    public PostDTO updatePost(@PathVariable Long postId ,@Valid @RequestBody PostDTO postDTO) {
+        return postService .update(postId, postDTO);
+    }
+
 //     @ApiOperation(value = "get a specific post")
 //     @GetMapping(value = "/dto/{postId}")
 //     public PostDTO findByIdDTO(@PathVariable Long postId) {

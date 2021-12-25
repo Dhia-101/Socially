@@ -14,6 +14,7 @@ import java.util.Set;
 @Service
 public class UserJpaService implements UserService {
 
+
     private final UserRepository userRepository;
 
     public UserJpaService(UserRepository userRepository) {
@@ -31,6 +32,11 @@ public class UserJpaService implements UserService {
     @Override
     public User findById(Long userId) {
         return userRepository.findById(userId).orElse(null);
+    }
+
+    @Override
+    public User update(Long aLong, User object) {
+        return null;
     }
 
     @Override

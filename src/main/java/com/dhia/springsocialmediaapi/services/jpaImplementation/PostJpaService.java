@@ -52,6 +52,18 @@ public class PostJpaService implements PostService {
         return postMapper.postToPostDTO(savedPost);
     }
 
+    @Override
+    public PostDTO update(Long postId, PostDTO postDTO) {
+        userRepository.findById(Long.valueOf(postDTO.getPublisherId())).
+                orElseThrow(() -> new ResourceNotFoundException("No publisher with id: " + postDTO.getPublisherId()));
+
+        Post post = postMapper.PostDTOToPost(postDTO);
+        post.setId(postId);
+        Post savedPost = postRepository.save(post);
+
+        return postMapper.postToPostDTO(savedPost);
+    }
+
 //    @Override
 //    public void deleteById(Long postId) {
 //        postRepository.deleteById(postId);

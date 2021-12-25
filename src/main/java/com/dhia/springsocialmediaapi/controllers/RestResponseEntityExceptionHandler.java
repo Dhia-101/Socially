@@ -15,12 +15,6 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionHandler {
 
 
-//    @ExceptionHandler({MethodArgumentNotValidException.class})
-//    public ResponseEntity<Object> handleArgumentNotValid(Exception exception, WebRequest request) {
-//        return new ResponseEntity<Object>(exception.getMessage(), new HttpHeaders(), HttpStatus.NOT_FOUND);
-//    }
-
-
     @ExceptionHandler({ResourceNotFoundException.class})
     public ResponseEntity<Object> handleNotFoundException(Exception exception) {
         return new ResponseEntity<Object>(exception.getMessage(), new HttpHeaders(), HttpStatus.NOT_FOUND);
