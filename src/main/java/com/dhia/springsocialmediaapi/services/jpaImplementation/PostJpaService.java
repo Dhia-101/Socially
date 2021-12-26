@@ -39,7 +39,7 @@ public class PostJpaService implements PostService {
     public PostDTO findById(Long postId) {
         return postRepository.findById(postId)
                 .map(postMapper::postToPostDTO)
-                .orElse(null);
+                .orElseThrow(() -> new ResourceNotFoundException("no post with id " + postId + " found"));
     }
 
     @Override
