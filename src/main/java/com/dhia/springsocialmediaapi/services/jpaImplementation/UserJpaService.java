@@ -2,6 +2,8 @@ package com.dhia.springsocialmediaapi.services.jpaImplementation;
 
 import com.dhia.springsocialmediaapi.domain.Post;
 import com.dhia.springsocialmediaapi.domain.User;
+import com.dhia.springsocialmediaapi.mapper.UserMapper;
+import com.dhia.springsocialmediaapi.model.UserDTO;
 import com.dhia.springsocialmediaapi.repositories.UserRepository;
 import com.dhia.springsocialmediaapi.services.UserService;
 import org.springframework.stereotype.Service;
@@ -13,13 +15,15 @@ public class UserJpaService implements UserService {
 
 
     private final UserRepository userRepository;
+    private final UserMapper userMapper;
 
-    public UserJpaService(UserRepository userRepository) {
+    public UserJpaService(UserRepository userRepository, UserMapper userMapper) {
         this.userRepository = userRepository;
+        this.userMapper = userMapper;
     }
 
     @Override
-    public List<User> findAll() {
+    public List<UserDTO> findAll() {
 //        Set<User> users = new HashSet<>();
 //        userRepository.findAll().forEach(users::add);
 //        return users;
@@ -27,17 +31,17 @@ public class UserJpaService implements UserService {
     }
 
     @Override
-    public User findById(Long userId) {
-        return userRepository.findById(userId).orElse(null);
+    public UserDTO findById(Long userId) {
+        return userMapper.UserToUserDTO(userRepository.findById(userId).orElse(null));
     }
 
     @Override
-    public User update(Long aLong, User object) {
+    public UserDTO update(Long aLong, UserDTO object) {
         return null;
     }
 
     @Override
-    public User save(User object) {
+    public UserDTO save(UserDTO object) {
         return null;
     }
 
