@@ -8,6 +8,8 @@ import com.dhia.springsocialmediaapi.repositories.UserRepository;
 import com.dhia.springsocialmediaapi.services.UserService;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 @Service
@@ -24,10 +26,11 @@ public class UserJpaService implements UserService {
 
     @Override
     public List<UserDTO> findAll() {
-//        Set<User> users = new HashSet<>();
-//        userRepository.findAll().forEach(users::add);
-//        return users;
-        return null;
+        List<UserDTO> users = new ArrayList<>();
+        userRepository.findAll().forEach(user -> {
+            users.add(userMapper.UserToUserDTO(user));
+        });
+        return users;
     }
 
     @Override
