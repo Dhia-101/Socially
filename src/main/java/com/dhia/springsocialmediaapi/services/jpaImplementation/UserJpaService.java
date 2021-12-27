@@ -9,7 +9,6 @@ import com.dhia.springsocialmediaapi.services.UserService;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 
 @Service
@@ -44,8 +43,11 @@ public class UserJpaService implements UserService {
     }
 
     @Override
-    public UserDTO save(UserDTO object) {
-        return null;
+    public UserDTO save(UserDTO userDTO) {
+        if(userDTO.getId() != null)
+            throw new RuntimeException("Invalid field: Id.");
+        User savedUser = userRepository.save(userMapper.userDTOToUser(userDTO));
+        return userMapper.UserToUserDTO(savedUser);
     }
 
     @Override

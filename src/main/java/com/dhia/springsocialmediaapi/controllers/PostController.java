@@ -4,6 +4,7 @@ import com.dhia.springsocialmediaapi.model.PostDTO;
 import com.dhia.springsocialmediaapi.services.PostService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -35,7 +36,7 @@ public class PostController {
 
     @ApiOperation(value = "save a post")
     @PostMapping(value = "")
-    public PostDTO savePost(@Valid @RequestBody PostDTO postDTO) {
+    public PostDTO savePost(@Valid @RequestBody PostDTO postDTO) throws Exception {
         return postService.save(postDTO);
     }
 

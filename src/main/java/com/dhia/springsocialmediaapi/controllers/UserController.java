@@ -5,10 +5,7 @@ import com.dhia.springsocialmediaapi.model.UserDTO;
 import com.dhia.springsocialmediaapi.services.UserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -33,6 +30,12 @@ public class UserController {
     @GetMapping(value = "/{userId}")
     public UserDTO getUser(@PathVariable Long userId) {
         return userService.findById(userId);
+    }
+
+    @ApiOperation(value = "add a user")
+    @PostMapping(value = "")
+    public UserDTO addUser(@RequestBody UserDTO userDto) {
+        return userService.save(userDto);
     }
 
 

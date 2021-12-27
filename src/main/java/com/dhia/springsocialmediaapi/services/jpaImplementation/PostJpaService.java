@@ -44,7 +44,6 @@ public class PostJpaService implements PostService {
 
     @Override
     public PostDTO save(@Valid PostDTO postDTO) {
-
         userRepository.findById(Long.valueOf(postDTO.getPublisherId())).
                 orElseThrow(() -> new ResourceNotFoundException("No publisher with id: " + postDTO.getPublisherId()));
 
