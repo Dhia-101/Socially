@@ -1,6 +1,5 @@
 package com.dhia.springsocialmediaapi.controllers;
 
-import com.dhia.springsocialmediaapi.model.PostDTO;
 import com.dhia.springsocialmediaapi.model.UserDTO;
 import com.dhia.springsocialmediaapi.services.UserService;
 import io.swagger.annotations.Api;
@@ -42,6 +41,12 @@ public class UserController {
     @DeleteMapping(value = "/{userId}")
     public void deleteUser(@PathVariable Long userId) {
         userService.delete(userId);
+    }
+
+    @ApiOperation(value = "delete a user")
+    @PutMapping(value = "/{userId}")
+    public void updateUser(@PathVariable Long userId, @RequestBody UserDTO userDTO) {
+        userService.update(userId, userDTO);
     }
 
 

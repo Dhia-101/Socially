@@ -39,8 +39,15 @@ public class UserJpaService implements UserService {
     }
 
     @Override
-    public UserDTO update(Long aLong, UserDTO object) {
-        return null;
+    public UserDTO update(Long userId, UserDTO userDTO) {
+
+        userRepository.findById(userId)
+                .orElseThrow(() -> new ResourceNotFoundException("user not found"));
+
+        UserDTO userToUpdate = userDTO;
+        userToUpdate.setId(userId);
+        User savedUser = userRepository.save(userMapper.userDTOToUser(userToUpdate));
+        return userMapper.UserToUserDTO(savedUser);
     }
 
     @Override
@@ -57,11 +64,6 @@ public class UserJpaService implements UserService {
                 .orElseThrow(() -> new ResourceNotFoundException("user not found"));
         userRepository.deleteById(userId);
     }
-
-//    @Override
-//    public User save(User user) {
-//        return userRepository.save(user);
-//    }
 
 //    @Override
 //    public void deleteById(Long userId) {
