@@ -4,7 +4,6 @@ import com.dhia.springsocialmediaapi.model.PostDTO;
 import com.dhia.springsocialmediaapi.services.PostService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;

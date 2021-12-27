@@ -38,5 +38,12 @@ public class UserController {
         return userService.save(userDto);
     }
 
+    @ApiOperation(value = "delete a user")
+    @DeleteMapping(value = "/{userId}")
+    public void deleteUser(@PathVariable Long userId) {
+        userService.delete(userId);
+    }
+
+
 
 }
