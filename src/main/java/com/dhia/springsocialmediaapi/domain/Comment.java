@@ -6,7 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.time.LocalDate;
 
 @Entity
 @Getter
@@ -18,7 +18,7 @@ public class Comment extends BaseEntity {
 
     private String content;
 
-    private Date datePosted;
+    private LocalDate datePosted;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "post_id", nullable = false)

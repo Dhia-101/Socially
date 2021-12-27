@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.validation.constraints.NotNull;
-import java.util.Date;
+import java.time.LocalDate;
 
 @Getter
 @Setter
@@ -21,6 +21,6 @@ public class CommentDTO {
 
     @NotNull
     @ApiModelProperty(value = "date of commenting")
-    private Date datePosted;
+    private LocalDate datePosted;
 
 }

@@ -30,4 +30,9 @@ public class Post extends BaseEntity {
 
     @OneToMany(mappedBy = "post", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Comment> comments = new ArrayList<>();
+
+    public Post(String content, User user) {
+        this.content = content;
+        this.publisher = user;
+    }
 }

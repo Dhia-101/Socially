@@ -1,21 +1,29 @@
 package com.dhia.springsocialmediaapi.bootstrap;
 
+import com.dhia.springsocialmediaapi.domain.Comment;
 import com.dhia.springsocialmediaapi.domain.Post;
 import com.dhia.springsocialmediaapi.domain.User;
+import com.dhia.springsocialmediaapi.repositories.CommentRepository;
 import com.dhia.springsocialmediaapi.repositories.PostRepository;
 import com.dhia.springsocialmediaapi.repositories.UserRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
+
+import java.time.LocalDate;
 
 @Component
 public class DataLoader implements CommandLineRunner {
 
     private final PostRepository postRepository;
     private final UserRepository userRepository;
+    private final CommentRepository commentRepository;
 
-    public DataLoader(PostRepository postRepository, UserRepository userRepository) {
+    public DataLoader(PostRepository postRepository,
+                      UserRepository userRepository,
+                      CommentRepository commentRepository) {
         this.postRepository = postRepository;
         this.userRepository = userRepository;
+        this.commentRepository = commentRepository;
     }
 
     @Override
@@ -32,6 +40,14 @@ public class DataLoader implements CommandLineRunner {
         Post post2 = new Post("post2", user1);
         Post post3 = new Post("post3", user2);
 
+        Comment comment1 = new Comment("comment1", LocalDate.now(), post1);
+        Comment comment2 = new Comment("comment2", LocalDate.now(), post1);
+        Comment comment3 = new Comment("comment3", LocalDate.now(), post2);
+
+        post1.getComments().add(comment1);
+        post1.getComments().add(comment2);
+        post2.getComments().add(comment3);
+
         user1.getPosts().add(post1);
         user1.getPosts().add(post2);
 
@@ -45,8 +61,13 @@ public class DataLoader implements CommandLineRunner {
         postRepository.save(post2);
         postRepository.save(post3);
 
+        commentRepository.save(comment1);
+        commentRepository.save(comment2);
+        commentRepository.save(comment3);
+
         System.out.println("users loaded...");
         System.out.println("posts loaded...");
+        System.out.println("comments loaded...");
 
     }
 
