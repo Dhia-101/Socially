@@ -1,6 +1,7 @@
 package com.dhia.springsocialmediaapi.services.jpaImplementation;
 
 import com.dhia.springsocialmediaapi.domain.Post;
+import com.dhia.springsocialmediaapi.domain.User;
 import com.dhia.springsocialmediaapi.mapper.PostMapper;
 import com.dhia.springsocialmediaapi.model.PostDTO;
 import com.dhia.springsocialmediaapi.repositories.PostRepository;
@@ -68,4 +69,17 @@ public class PostJpaService implements PostService {
         postRepository.deleteById(postId);
     }
 
+    @Override
+    public List<PostDTO> getUserPosts(Long userId) {
+
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new ResourceNotFoundException("user not found"));
+
+        List<PostDTO> posts = new ArrayList<>();
+        user.getPosts().forEach(post -> {
+            posts.add(postMapper.postToPostDTO(post));
+        });
+
+        return posts;
+    }
 }

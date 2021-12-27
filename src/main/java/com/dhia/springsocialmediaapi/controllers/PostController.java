@@ -33,9 +33,15 @@ public class PostController {
         return postService.findById(postId);
     }
 
+    @ApiOperation(value = "get user posts")
+    @GetMapping(value = "/user/{userId}")
+    public List<PostDTO> getUserPosts(@PathVariable Long userId) {
+        return postService.getUserPosts(userId);
+    }
+
     @ApiOperation(value = "save a post")
     @PostMapping(value = "")
-    public PostDTO savePost(@Valid @RequestBody PostDTO postDTO) throws Exception {
+    public PostDTO savePost(@Valid @RequestBody PostDTO postDTO) {
         return postService.save(postDTO);
     }
 

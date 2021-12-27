@@ -2,4 +2,8 @@ package com.dhia.springsocialmediaapi.services;
 
 import com.dhia.springsocialmediaapi.model.PostDTO;
 
-public interface PostService extends CrudService<PostDTO, Long> { }
+import java.util.List;
+
+public interface PostService extends CrudService<PostDTO, Long> {
+    List<PostDTO> getUserPosts(Long userId);
+}
