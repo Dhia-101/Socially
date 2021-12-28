@@ -1,6 +1,5 @@
 package com.dhia.springsocialmediaapi.services;
 
-
 import java.util.List;
 
 public interface CrudService<T, ID> {
