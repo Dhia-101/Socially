@@ -63,7 +63,7 @@ public class DataLoader implements CommandLineRunner {
                 "user3",
                 "user3@email.com",
                 "user3",
-                user,
+                new Role(),
                 new HashSet<>());
 
         Post post1 = new Post("post1", user1);
