@@ -75,6 +75,11 @@ public class UserJpaService implements UserService {
         return null;
     }
 
+    @Override
+    public Boolean ExistsByUsername(String username) {
+        return userRepository.existsByUsername(username);
+    }
+
 //    @Override
 //    public List<Post> findUserPosts(Long userId) {
 //        return new ArrayList<>(userRepository.findById(userId).orElse(null).getPosts());

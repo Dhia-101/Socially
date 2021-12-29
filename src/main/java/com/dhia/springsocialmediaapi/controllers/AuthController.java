@@ -2,10 +2,13 @@ package com.dhia.springsocialmediaapi.controllers;
 
 import com.dhia.springsocialmediaapi.model.JwtAuthResponse;
 import com.dhia.springsocialmediaapi.model.LoginDTO;
+import com.dhia.springsocialmediaapi.model.SignUpDTO;
 import com.dhia.springsocialmediaapi.services.CustomUserDetailsService;
+import com.dhia.springsocialmediaapi.services.UserService;
 import com.dhia.springsocialmediaapi.util.JwtUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -24,11 +27,13 @@ public class AuthController {
 
     private final AuthenticationManager authenticationManager;
     private final CustomUserDetailsService userDetailsService;
+    private final UserService userService;
     private final JwtUtil jwtUtil;
 
-    public AuthController(AuthenticationManager authenticationManager, CustomUserDetailsService userDetailsService, JwtUtil jwtUtil) {
+    public AuthController(AuthenticationManager authenticationManager, CustomUserDetailsService userDetailsService, UserService userService, JwtUtil jwtUtil) {
         this.authenticationManager = authenticationManager;
         this.userDetailsService = userDetailsService;
+        this.userService = userService;
         this.jwtUtil = jwtUtil;
     }
 
@@ -44,6 +49,15 @@ public class AuthController {
 
         final String jwt = jwtUtil.generateToken(userDetails);
         return ResponseEntity.ok(new JwtAuthResponse(jwt));
+    }
+
+    @ApiOperation(value = "signup endpoint")
+    @PostMapping("/signup")
+    public ResponseEntity<?> registerUser(@RequestBody SignUpDTO signUpDTO) {
+        if (userService.ExistsByUsername(signUpDTO.getUsername())) {
+            return new ResponseEntity<>("Username is already taken!", HttpStatus.BAD_REQUEST);
+        }
+            return null;
     }
 
 }
