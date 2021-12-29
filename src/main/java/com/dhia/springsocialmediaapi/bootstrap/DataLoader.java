@@ -12,6 +12,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
+import java.util.Collections;
 
 @Component
 public class DataLoader implements CommandLineRunner {
@@ -41,14 +42,13 @@ public class DataLoader implements CommandLineRunner {
         Role user = new Role("user");
 
         User user1 = new User("user1", "user1lN");
-        user1.getRoles().add(user);
-        user1.getRoles().add(admin);
+        user1.setRole(admin);
 
         User user2 = new User("user2", "user2lN");
-        user2.getRoles().add(user);
+        user1.setRole(user);
 
         User user3 = new User("user3", "user3lN");
-        user3.getRoles().add(admin);
+        user1.setRole(admin);
 
         Post post1 = new Post("post1", user1);
         Post post2 = new Post("post2", user1);
