@@ -8,5 +8,6 @@ import java.util.List;
 public interface UserService extends CrudService<UserDTO, Long> {
     List<Post> findUserPosts(Long userId);
 
-    Boolean ExistsByUsername(String username);
+    Boolean existsByUsername(String username);
+    Boolean existsByEmail(String email);
 }

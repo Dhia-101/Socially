@@ -54,9 +54,14 @@ public class AuthController {
     @ApiOperation(value = "signup endpoint")
     @PostMapping("/signup")
     public ResponseEntity<?> registerUser(@RequestBody SignUpDTO signUpDTO) {
-        if (userService.ExistsByUsername(signUpDTO.getUsername())) {
+        if (userService.existsByUsername(signUpDTO.getUsername())) {
             return new ResponseEntity<>("Username is already taken!", HttpStatus.BAD_REQUEST);
         }
+
+        if (userService.existsByEmail(signUpDTO.getEmail())) {
+            return new ResponseEntity<>("Email is already taken!", HttpStatus.BAD_REQUEST);
+        }
+
             return null;
     }
 

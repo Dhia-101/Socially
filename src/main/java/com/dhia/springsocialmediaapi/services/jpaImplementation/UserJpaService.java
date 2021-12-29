@@ -76,8 +76,13 @@ public class UserJpaService implements UserService {
     }
 
     @Override
-    public Boolean ExistsByUsername(String username) {
+    public Boolean existsByUsername(String username) {
         return userRepository.existsByUsername(username);
+    }
+
+    @Override
+    public Boolean existsByEmail(String email) {
+        return userRepository.existsByEmail(email);
     }
 
 //    @Override
