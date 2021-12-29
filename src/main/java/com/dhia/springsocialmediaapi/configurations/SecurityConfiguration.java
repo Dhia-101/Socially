@@ -1,7 +1,7 @@
 package com.dhia.springsocialmediaapi.configurations;
 
 import com.dhia.springsocialmediaapi.security.JwtAuthenticationFilter;
-import com.dhia.springsocialmediaapi.services.CustomUserDetailsService;
+import com.dhia.springsocialmediaapi.security.CustomUserDetailsService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;

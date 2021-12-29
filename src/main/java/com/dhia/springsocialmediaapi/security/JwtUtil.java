@@ -1,4 +1,4 @@
-package com.dhia.springsocialmediaapi.util;
+package com.dhia.springsocialmediaapi.security;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;

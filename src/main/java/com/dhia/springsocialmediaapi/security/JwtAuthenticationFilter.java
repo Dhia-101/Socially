@@ -1,7 +1,5 @@
 package com.dhia.springsocialmediaapi.security;
 
-import com.dhia.springsocialmediaapi.services.CustomUserDetailsService;
-import com.dhia.springsocialmediaapi.util.JwtUtil;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;

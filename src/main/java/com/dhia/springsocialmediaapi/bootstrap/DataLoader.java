@@ -12,7 +12,8 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
-import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
 
 @Component
 public class DataLoader implements CommandLineRunner {
@@ -41,14 +42,29 @@ public class DataLoader implements CommandLineRunner {
         Role admin = new Role("admin");
         Role user = new Role("user");
 
-        User user1 = new User("user1", "user1lN");
-        user1.setRole(admin);
+        User user1 = new User("user1",
+                "user1lN",
+                "foo",
+                "foo@email.com",
+                "foo",
+                admin,
+                new HashSet<>());
 
-        User user2 = new User("user2", "user2lN");
-        user1.setRole(user);
+        User user2 = new User("user2",
+                "user2lN",
+                "user2",
+                "user2@email.com",
+                "user2",
+                user,
+                new HashSet<>());
 
-        User user3 = new User("user3", "user3lN");
-        user1.setRole(admin);
+        User user3 = new User("user3",
+                "user3lN",
+                "user3",
+                "user3@email.com",
+                "user3",
+                user,
+                new HashSet<>());
 
         Post post1 = new Post("post1", user1);
         Post post2 = new Post("post2", user1);
