@@ -2,9 +2,11 @@ package com.dhia.springsocialmediaapi.bootstrap;
 
 import com.dhia.springsocialmediaapi.domain.Comment;
 import com.dhia.springsocialmediaapi.domain.Post;
+import com.dhia.springsocialmediaapi.domain.Role;
 import com.dhia.springsocialmediaapi.domain.User;
 import com.dhia.springsocialmediaapi.repositories.CommentRepository;
 import com.dhia.springsocialmediaapi.repositories.PostRepository;
+import com.dhia.springsocialmediaapi.repositories.RoleRepository;
 import com.dhia.springsocialmediaapi.repositories.UserRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
@@ -17,13 +19,16 @@ public class DataLoader implements CommandLineRunner {
     private final PostRepository postRepository;
     private final UserRepository userRepository;
     private final CommentRepository commentRepository;
+    private final RoleRepository roleRepository;
 
     public DataLoader(PostRepository postRepository,
                       UserRepository userRepository,
-                      CommentRepository commentRepository) {
+                      CommentRepository commentRepository,
+                      RoleRepository roleRepository) {
         this.postRepository = postRepository;
         this.userRepository = userRepository;
         this.commentRepository = commentRepository;
+        this.roleRepository = roleRepository;
     }
 
     @Override
@@ -32,9 +37,18 @@ public class DataLoader implements CommandLineRunner {
     }
 
     private void loadUsers() {
+        Role admin = new Role("admin");
+        Role user = new Role("user");
+
         User user1 = new User("user1", "user1lN");
+        user1.getRoles().add(user);
+        user1.getRoles().add(admin);
+
         User user2 = new User("user2", "user2lN");
+        user2.getRoles().add(user);
+
         User user3 = new User("user3", "user3lN");
+        user3.getRoles().add(admin);
 
         Post post1 = new Post("post1", user1);
         Post post2 = new Post("post2", user1);
@@ -57,6 +71,9 @@ public class DataLoader implements CommandLineRunner {
         userRepository.save(user2);
         userRepository.save(user3);
 
+        roleRepository.save(admin);
+        roleRepository.save(user);
+
         postRepository.save(post1);
         postRepository.save(post2);
         postRepository.save(post3);
@@ -66,10 +83,9 @@ public class DataLoader implements CommandLineRunner {
         commentRepository.save(comment3);
 
         System.out.println("users loaded...");
+        System.out.println("roles loaded...");
         System.out.println("posts loaded...");
         System.out.println("comments loaded...");
 
     }
-
-
 }
