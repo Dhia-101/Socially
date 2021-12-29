@@ -16,8 +16,10 @@ import java.util.Set;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "user")
-public class User extends BaseEntity{
+@Table(name = "users", uniqueConstraints = {
+        @UniqueConstraint(columnNames = {"email"})
+})
+public class User extends BaseEntity {
 
     public User(String firstName, String lastName) {
         this.firstName = firstName;
@@ -25,12 +27,25 @@ public class User extends BaseEntity{
     }
 
     @Column
-    @ApiModelProperty(value = "this is the user first name", required = true)
     private String firstName;
 
     @Column
-    @ApiModelProperty(value = "this is the user last name", required = true)
     private String lastName;
+
+    @Column
+    private String username;
+
+    @Column
+    private String email;
+
+    @Column
+    private String password;
+
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinTable(name = "user_roles",
+        joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
+        inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
+    private Set<Role> roles;
 
     @OneToMany(mappedBy = "publisher", cascade = CascadeType.ALL)
     private Set<Post> posts = new HashSet<>();
