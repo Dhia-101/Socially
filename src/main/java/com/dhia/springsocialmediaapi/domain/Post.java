@@ -19,6 +19,11 @@ import java.util.List;
 @Table(name = "post")
 public class Post extends BaseEntity {
 
+    public Post(String content, User user) {
+        this.content = content;
+        this.publisher = user;
+    }
+
     @NotBlank
     @Size(min = 3, max = 255)
     @Column(name = "content")
@@ -31,8 +36,9 @@ public class Post extends BaseEntity {
     @OneToMany(mappedBy = "post", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Comment> comments = new ArrayList<>();
 
-    public Post(String content, User user) {
-        this.content = content;
-        this.publisher = user;
+    public void addComment(Comment comment) {
+        this.getComments().add(comment);
     }
+
+
 }

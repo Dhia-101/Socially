@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface PostService extends CrudService<PostDTO, Long> {
     List<PostDTO> getUserPosts(Long userId);
+
+    PostDTO save(PostDTO object);
 }

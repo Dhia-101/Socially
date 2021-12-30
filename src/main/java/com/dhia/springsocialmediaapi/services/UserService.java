@@ -10,4 +10,6 @@ public interface UserService extends CrudService<UserDTO, Long> {
 
     Boolean existsByUsername(String username);
     Boolean existsByEmail(String email);
+
+    UserDTO save(UserDTO object);
 }

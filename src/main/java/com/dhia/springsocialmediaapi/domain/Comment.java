@@ -20,8 +20,4 @@ public class Comment extends BaseEntity {
 
     private LocalDate datePosted;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "post_id", nullable = false)
-    private Post post;
-
 }
