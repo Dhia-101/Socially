@@ -50,14 +50,28 @@ public class CommentJpaService implements CommentService {
 
         Comment comment = commentMapper.CommentDTOToComment(commentDTO);
         post.addComment(comment);
+        comment.setPost(post);
         comment.setDateTimePosted(LocalDateTime.now());
 
-        return commentMapper.commentToCommentDTO(comment);
+        return commentMapper.commentToCommentDTO(commentRepository.save(comment));
     }
 
     @Override
-    public CommentDTO update(Long aLong, CommentDTO object) {
-        return null;
+    public CommentDTO update(Long postId, Long commentId, CommentDTO commentDTO) {
+        Post post = postRepository.findById(postId)
+                .orElseThrow(() -> new ResourceNotFoundException("no post with id: " + postId));
+
+        Comment comment = commentRepository.findById(commentId)
+                .orElseThrow(() -> new ResourceNotFoundException("no comment width id: " + commentId));
+
+        if(!comment.getPost().getId().equals(post.getId())){
+            throw new RuntimeException("Comment does not belongs to post");
+        }
+
+        comment.setContent(commentDTO.getContent());
+        Comment updatedComment = commentRepository.save(comment);
+
+        return commentMapper.commentToCommentDTO(commentRepository.save(updatedComment));
     }
 
     @Override

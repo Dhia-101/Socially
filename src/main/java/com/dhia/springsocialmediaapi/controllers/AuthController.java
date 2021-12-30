@@ -26,7 +26,7 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.validation.Valid;
 
 @RestController
-@Api("signin and signup endpoints")
+@Api(tags = {"auth"})
 @RequestMapping("/auth")
 public class AuthController {
 

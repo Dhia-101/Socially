@@ -11,7 +11,7 @@ import java.util.List;
 
 @RestController
 @Api(tags = {"comments"})
-@RequestMapping("/comments")
+@RequestMapping()
 public class CommentController {
 
     private final CommentService commentService;
@@ -20,22 +20,28 @@ public class CommentController {
         this.commentService = commentService;
     }
 
-    @ApiOperation("get all comments")
-    @GetMapping("")
-    public List<CommentDTO> getAllComments() {
-        return commentService.findAll();
-    }
+//    @ApiOperation("get all comments")
+//    @GetMapping("/posts")
+//    public List<CommentDTO> getAllComments() {
+//        return commentService.findAll();
+//    }
 
-    @ApiOperation("get a specific comment")
-    @GetMapping("/{commentId}")
-    public CommentDTO getCommentById(@PathVariable Long commentId) {
-        return commentService.findById(commentId);
-    }
+//    @ApiOperation("get a specific comment")
+//    @GetMapping("/{commentId}")
+//    public CommentDTO getCommentById(@PathVariable Long commentId) {
+//        return commentService.findById(commentId);
+//    }
 
     @ApiOperation("save a comment")
-    @PostMapping("/{postId}")
+    @PostMapping("/posts/{postId}/comments/add")
     public CommentDTO saveComment(@PathVariable Long postId, @RequestBody CommentDTO commentDTO) {
         return commentService.save(postId, commentDTO);
+    }
+
+    @ApiOperation("update a comment")
+    @PostMapping("/posts/{postId}/comments/update/{commentId}")
+    public CommentDTO updateComment(@PathVariable Long postId, @PathVariable Long commentId, @RequestBody CommentDTO commentDTO) {
+        return commentService.update(postId, commentId, commentDTO);
     }
 
 

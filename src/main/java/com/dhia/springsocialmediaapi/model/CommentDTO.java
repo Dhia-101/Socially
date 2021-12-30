@@ -15,6 +15,9 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class CommentDTO {
 
+    @ApiModelProperty(value = "comment id")
+    private Long id;
+
     @NotNull
     @ApiModelProperty(value = "the post content", required = true)
     private String content;
