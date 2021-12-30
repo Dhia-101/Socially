@@ -9,5 +9,5 @@ public interface CommentService {
     CommentDTO findById(Long postId, Long commentId);
     CommentDTO save(Long postId, CommentDTO object);
     CommentDTO update(Long postId, Long commentId, CommentDTO object);
-    void delete(Long id);
+    CommentDTO deleteById(Long postId, Long commentId);
 }

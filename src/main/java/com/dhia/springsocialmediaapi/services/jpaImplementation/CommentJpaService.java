@@ -86,7 +86,19 @@ public class CommentJpaService implements CommentService {
     }
 
     @Override
-    public void delete(Long aLong) {
+    public CommentDTO deleteById(Long postId, Long commentId) {
+        Post post = postRepository.findById(postId)
+                .orElseThrow(() -> new ResourceNotFoundException("no post with id: " + postId));
 
+        Comment comment = commentRepository.findById(commentId)
+                .orElseThrow(() -> new ResourceNotFoundException("no comment width id: " + commentId));
+
+        if(!comment.getPost().getId().equals(post.getId())){
+            throw new RuntimeException("Comment does not belongs to post");
+        }
+
+        commentRepository.delete(comment);
+
+        return commentMapper.commentToCommentDTO(comment);
     }
 }

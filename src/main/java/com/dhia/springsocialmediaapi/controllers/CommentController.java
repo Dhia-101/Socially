@@ -1,7 +1,6 @@
 package com.dhia.springsocialmediaapi.controllers;
 
 import com.dhia.springsocialmediaapi.model.CommentDTO;
-import com.dhia.springsocialmediaapi.model.PostDTO;
 import com.dhia.springsocialmediaapi.services.CommentService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -39,9 +38,15 @@ public class CommentController {
     }
 
     @ApiOperation("update a comment")
-    @PostMapping("/posts/{postId}/comments/update/{commentId}")
+    @PutMapping("/posts/{postId}/comments/update/{commentId}")
     public CommentDTO updateComment(@PathVariable Long postId, @PathVariable Long commentId, @RequestBody CommentDTO commentDTO) {
         return commentService.update(postId, commentId, commentDTO);
+    }
+
+    @ApiOperation("delete a comment")
+    @DeleteMapping("/posts/{postId}/comments/delete/{commentId}")
+    public CommentDTO deleteComment(@PathVariable Long postId, @PathVariable Long commentId) {
+        return commentService.deleteById(postId, commentId);
     }
 
 
