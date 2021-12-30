@@ -26,11 +26,11 @@ public class CommentController {
 //        return commentService.findAll();
 //    }
 
-//    @ApiOperation("get a specific comment")
-//    @GetMapping("/{commentId}")
-//    public CommentDTO getCommentById(@PathVariable Long commentId) {
-//        return commentService.findById(commentId);
-//    }
+    @ApiOperation("get a specific comment")
+    @GetMapping("/posts/{postId}/comments/{commentId}")
+    public CommentDTO getCommentById(@PathVariable Long postId, @PathVariable Long commentId) {
+        return commentService.findById(postId, commentId);
+    }
 
     @ApiOperation("save a comment")
     @PostMapping("/posts/{postId}/comments/add")

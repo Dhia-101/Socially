@@ -37,9 +37,17 @@ public class CommentJpaService implements CommentService {
     }
 
     @Override
-    public CommentDTO findById(Long commentId) {
+    public CommentDTO findById(Long postId, Long commentId) {
+        Post post = postRepository.findById(postId)
+                .orElseThrow(() -> new ResourceNotFoundException("No post with id: " + postId + " was found."));
+
         Comment comment = commentRepository.findById(commentId)
                 .orElseThrow(() -> new ResourceNotFoundException("no comment with id: " + commentId));
+
+        if(!comment.getPost().getId().equals(post.getId())){
+            throw new RuntimeException("Comment does not belongs to post");
+        }
+
         return commentMapper.commentToCommentDTO(comment);
     }
 
