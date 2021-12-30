@@ -1,6 +1,6 @@
 package com.dhia.springsocialmediaapi.controllers;
 
-import com.dhia.springsocialmediaapi.services.ResourceNotFoundException;
+import com.dhia.springsocialmediaapi.exceptions.ResourceNotFoundException;
 import org.springframework.beans.TypeMismatchException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;

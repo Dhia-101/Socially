@@ -1,4 +1,4 @@
-package com.dhia.springsocialmediaapi.services;
+package com.dhia.springsocialmediaapi.exceptions;
 
 public class ResourceNotFoundException extends RuntimeException {
 

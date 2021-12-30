@@ -7,7 +7,7 @@ import com.dhia.springsocialmediaapi.model.PostDTO;
 import com.dhia.springsocialmediaapi.repositories.PostRepository;
 import com.dhia.springsocialmediaapi.repositories.UserRepository;
 import com.dhia.springsocialmediaapi.services.PostService;
-import com.dhia.springsocialmediaapi.services.ResourceNotFoundException;
+import com.dhia.springsocialmediaapi.exceptions.ResourceNotFoundException;
 import org.springframework.stereotype.Service;
 
 import javax.validation.Valid;

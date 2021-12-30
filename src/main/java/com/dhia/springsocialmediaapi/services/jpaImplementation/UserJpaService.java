@@ -5,7 +5,7 @@ import com.dhia.springsocialmediaapi.domain.User;
 import com.dhia.springsocialmediaapi.mapper.UserMapper;
 import com.dhia.springsocialmediaapi.model.UserDTO;
 import com.dhia.springsocialmediaapi.repositories.UserRepository;
-import com.dhia.springsocialmediaapi.services.ResourceNotFoundException;
+import com.dhia.springsocialmediaapi.exceptions.ResourceNotFoundException;
 import com.dhia.springsocialmediaapi.services.UserService;
 import org.springframework.stereotype.Service;
 

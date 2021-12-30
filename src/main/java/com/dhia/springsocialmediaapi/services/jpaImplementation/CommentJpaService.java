@@ -7,10 +7,9 @@ import com.dhia.springsocialmediaapi.model.CommentDTO;
 import com.dhia.springsocialmediaapi.repositories.CommentRepository;
 import com.dhia.springsocialmediaapi.repositories.PostRepository;
 import com.dhia.springsocialmediaapi.services.CommentService;
-import com.dhia.springsocialmediaapi.services.ResourceNotFoundException;
+import com.dhia.springsocialmediaapi.exceptions.ResourceNotFoundException;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
