@@ -10,6 +10,8 @@ import com.dhia.springsocialmediaapi.services.CommentService;
 import com.dhia.springsocialmediaapi.services.ResourceNotFoundException;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -49,6 +51,7 @@ public class CommentJpaService implements CommentService {
 
         Comment comment = commentMapper.CommentDTOToComment(commentDTO);
         post.addComment(comment);
+        comment.setDateTimePosted(LocalDateTime.now());
 
         return commentMapper.commentToCommentDTO(comment);
     }

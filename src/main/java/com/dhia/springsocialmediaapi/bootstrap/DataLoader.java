@@ -12,6 +12,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -70,9 +71,9 @@ public class DataLoader implements CommandLineRunner {
         Post post2 = new Post("post2", user1);
         Post post3 = new Post("post3", user2);
 
-        Comment comment1 = new Comment("comment1", LocalDate.now(), post1);
-        Comment comment2 = new Comment("comment2", LocalDate.now(), post1);
-        Comment comment3 = new Comment("comment3", LocalDate.now(), post2);
+        Comment comment1 = new Comment("comment1", LocalDateTime.now(), post1);
+        Comment comment2 = new Comment("comment2", LocalDateTime.now(), post1);
+        Comment comment3 = new Comment("comment3", LocalDateTime.now(), post2);
 
         post1.getComments().add(comment1);
         post1.getComments().add(comment2);
