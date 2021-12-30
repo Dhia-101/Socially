@@ -5,10 +5,7 @@ import com.dhia.springsocialmediaapi.model.PostDTO;
 import com.dhia.springsocialmediaapi.services.CommentService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -33,6 +30,12 @@ public class CommentController {
     @GetMapping("/{commentId}")
     public CommentDTO getCommentById(@PathVariable Long commentId) {
         return commentService.findById(commentId);
+    }
+
+    @ApiOperation("save a comment")
+    @PostMapping("/{postId}")
+    public CommentDTO saveComment(@PathVariable Long postId, @RequestBody CommentDTO commentDTO) {
+        return commentService.save(postId, commentDTO);
     }
 
 
