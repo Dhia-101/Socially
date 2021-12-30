@@ -20,11 +20,11 @@ public class CommentController {
         this.commentService = commentService;
     }
 
-//    @ApiOperation("get all comments")
-//    @GetMapping("/posts")
-//    public List<CommentDTO> getAllComments() {
-//        return commentService.findAll();
-//    }
+    @ApiOperation("get post comments")
+    @GetMapping("/posts/{postId}/comments")
+    public List<CommentDTO> getPostComments(@PathVariable Long postId) {
+        return commentService.findAll(postId);
+    }
 
     @ApiOperation("get a specific comment")
     @GetMapping("/posts/{postId}/comments/{commentId}")

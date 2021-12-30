@@ -5,7 +5,7 @@ import com.dhia.springsocialmediaapi.model.CommentDTO;
 import java.util.List;
 
 public interface CommentService {
-    List<CommentDTO> findAll();
+    List<CommentDTO> findAll(Long postId);
     CommentDTO findById(Long postId, Long commentId);
     CommentDTO save(Long postId, CommentDTO object);
     CommentDTO update(Long postId, Long commentId, CommentDTO object);

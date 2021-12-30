@@ -28,9 +28,12 @@ public class CommentJpaService implements CommentService {
     }
 
     @Override
-    public List<CommentDTO> findAll() {
+    public List<CommentDTO> findAll(Long postId) {
+        Post post = postRepository.findById(postId)
+                .orElseThrow(() -> new ResourceNotFoundException("No post with id: " + postId + " was found."));
+
         List<CommentDTO> comments = new ArrayList<>();
-        commentRepository.findAll().forEach(comment -> {
+        post.getComments().forEach(comment -> {
             comments.add(commentMapper.commentToCommentDTO(comment));
         });
         return comments;
