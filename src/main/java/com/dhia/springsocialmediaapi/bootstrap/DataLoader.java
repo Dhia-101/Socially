@@ -13,6 +13,8 @@ import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -40,31 +42,44 @@ public class DataLoader implements CommandLineRunner {
     }
 
     private void loadUsers() {
-        Role admin = new Role("admin");
-        Role user = new Role("user");
+        Role admin = roleRepository.save(new Role("admin"));
+        Role user = roleRepository.save(new Role("user")) ;
+
+        Set<Role> roles = new HashSet<>();
+        roles.add(admin);
+        roles.add(user);
 
         User user1 = new User("user1",
                 "user1lN",
                 "foo",
                 "foo@email.com",
                 "foo",
-                admin,
+                roles,
                 new HashSet<>());
+
+
+        Set<Role> rolesUser2 = new HashSet<>();
+        rolesUser2.add(user);
+        rolesUser2.add(admin);
 
         User user2 = new User("user2",
                 "user2lN",
                 "user2",
                 "user2@email.com",
                 "user2",
-                user,
+                rolesUser2,
                 new HashSet<>());
+
+
+        Set<Role> rolesUser3 = new HashSet<>();
+        rolesUser3.add(user);
 
         User user3 = new User("user3",
                 "user3lN",
                 "user3",
                 "user3@email.com",
                 "user3",
-                new Role(),
+                rolesUser3,
                 new HashSet<>());
 
         Post post1 = new Post("post1", user1);
@@ -87,9 +102,6 @@ public class DataLoader implements CommandLineRunner {
         userRepository.save(user1);
         userRepository.save(user2);
         userRepository.save(user3);
-
-        roleRepository.save(admin);
-        roleRepository.save(user);
 
         postRepository.save(post1);
         postRepository.save(post2);
