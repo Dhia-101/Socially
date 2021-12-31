@@ -49,6 +49,4 @@ public class CommentController {
         return commentService.deleteById(postId, commentId);
     }
 
-
-
 }
