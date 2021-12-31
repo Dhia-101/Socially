@@ -42,8 +42,8 @@ public class DataLoader implements CommandLineRunner {
     }
 
     private void loadUsers() {
-        Role admin = roleRepository.save(new Role("admin"));
-        Role user = roleRepository.save(new Role("user")) ;
+        Role admin = roleRepository.save(new Role("ROLE_ADMIN"));
+        Role user = roleRepository.save(new Role("ROLE_USER")) ;
 
         Set<Role> roles = new HashSet<>();
         roles.add(admin);

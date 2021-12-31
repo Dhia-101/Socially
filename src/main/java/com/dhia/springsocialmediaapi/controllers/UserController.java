@@ -4,6 +4,7 @@ import com.dhia.springsocialmediaapi.model.UserDTO;
 import com.dhia.springsocialmediaapi.services.UserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -19,12 +20,14 @@ public class UserController {
         this.userService = userService;
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @ApiOperation(value = "get all users")
     @GetMapping(value = "")
     public List<UserDTO> getAllUsers() {
         return userService.findAll();
     }
 
+    @PreAuthorize("hasRole('USER')")
     @ApiOperation(value = "get a specific user")
     @GetMapping(value = "/{userId}")
     public UserDTO getUser(@PathVariable Long userId) {
