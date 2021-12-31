@@ -1,20 +1,12 @@
 package com.dhia.springsocialmediaapi.bootstrap;
 
-import com.dhia.springsocialmediaapi.domain.Comment;
-import com.dhia.springsocialmediaapi.domain.Post;
-import com.dhia.springsocialmediaapi.domain.Role;
-import com.dhia.springsocialmediaapi.domain.User;
-import com.dhia.springsocialmediaapi.repositories.CommentRepository;
-import com.dhia.springsocialmediaapi.repositories.PostRepository;
-import com.dhia.springsocialmediaapi.repositories.RoleRepository;
-import com.dhia.springsocialmediaapi.repositories.UserRepository;
+import com.dhia.springsocialmediaapi.domain.*;
+import com.dhia.springsocialmediaapi.repositories.*;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -25,15 +17,21 @@ public class DataLoader implements CommandLineRunner {
     private final UserRepository userRepository;
     private final CommentRepository commentRepository;
     private final RoleRepository roleRepository;
+    private final PasswordEncoder passwordEncoder;
+    private final LikeRepository likeRepository;
 
     public DataLoader(PostRepository postRepository,
                       UserRepository userRepository,
                       CommentRepository commentRepository,
-                      RoleRepository roleRepository) {
+                      RoleRepository roleRepository,
+                      PasswordEncoder passwordEncoder,
+                      LikeRepository likeRepository) {
         this.postRepository = postRepository;
         this.userRepository = userRepository;
         this.commentRepository = commentRepository;
         this.roleRepository = roleRepository;
+        this.passwordEncoder = passwordEncoder;
+        this.likeRepository = likeRepository;
     }
 
     @Override
@@ -49,12 +47,16 @@ public class DataLoader implements CommandLineRunner {
         roles.add(admin);
         roles.add(user);
 
+
+
+
         User user1 = new User("user1",
                 "user1lN",
                 "foo",
                 "foo@email.com",
-                "foo",
+                passwordEncoder.encode("foo"),
                 roles,
+                new HashSet<>(),
                 new HashSet<>());
 
 
@@ -66,8 +68,9 @@ public class DataLoader implements CommandLineRunner {
                 "user2lN",
                 "user2",
                 "user2@email.com",
-                "user2",
+                passwordEncoder.encode("user2"),
                 rolesUser2,
+                new HashSet<>(),
                 new HashSet<>());
 
 
@@ -78,13 +81,16 @@ public class DataLoader implements CommandLineRunner {
                 "user3lN",
                 "user3",
                 "user3@email.com",
-                "user3",
+                passwordEncoder.encode("user3"),
                 rolesUser3,
+                new HashSet<>(),
                 new HashSet<>());
 
         Post post1 = new Post("post1", user1);
         Post post2 = new Post("post2", user1);
         Post post3 = new Post("post3", user2);
+
+
 
         Comment comment1 = new Comment("comment1", LocalDateTime.now(), post1);
         Comment comment2 = new Comment("comment2", LocalDateTime.now(), post1);
@@ -99,13 +105,25 @@ public class DataLoader implements CommandLineRunner {
 
         user2.getPosts().add(post3);
 
-        userRepository.save(user1);
-        userRepository.save(user2);
-        userRepository.save(user3);
+        user1 = userRepository.save(user1);
+        user2 = userRepository.save(user2);
+        user3 = userRepository.save(user3);
 
-        postRepository.save(post1);
-        postRepository.save(post2);
-        postRepository.save(post3);
+        post1 = postRepository.save(post1);
+        post2 = postRepository.save(post2);
+        post3 = postRepository.save(post3);
+
+        Like like1 = new Like(post1, user1);
+        Like like2 = new Like(post1, user2);
+
+        post1.getLikes().add(like1);
+        user1.getLikes().add(like1);
+
+        post1.getLikes().add(like2);
+        user2.getLikes().add(like2);
+
+        likeRepository.save(like1);
+        likeRepository.save(like2);
 
         commentRepository.save(comment1);
         commentRepository.save(comment2);
@@ -114,6 +132,7 @@ public class DataLoader implements CommandLineRunner {
         System.out.println("users loaded...");
         System.out.println("roles loaded...");
         System.out.println("posts loaded...");
+        System.out.println("likes loaded...");
         System.out.println("comments loaded...");
 
     }
