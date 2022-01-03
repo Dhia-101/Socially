@@ -6,6 +6,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.messaging.handler.annotation.DestinationVariable;
 import org.springframework.messaging.handler.annotation.MessageMapping;
+import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.web.bind.annotation.*;
 
@@ -59,7 +60,15 @@ public class CommentController {
 //    @MessageMapping("/hello")
 //    public void sendMessage() {
 //        System.out.println("called");
-//        simpMessagingTemplate.convertAndSend("/topic", "test");
+//        simpMessagingTemplate.convertAndSend("/topic/greetings", "test");
+//    }
+
+//    @MessageMapping("/hello")
+//    @CrossOrigin
+//    @SendTo("/topic/greetings")
+//    public String greeting() throws Exception {
+//        Thread.sleep(1000); // simulated delay
+//        return "test from server";
 //    }
 
 }
