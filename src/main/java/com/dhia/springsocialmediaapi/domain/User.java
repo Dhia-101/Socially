@@ -52,4 +52,9 @@ public class User extends BaseEntity {
     @OneToMany(mappedBy = "publisher", cascade = CascadeType.ALL)
     private Set<Post> posts = new HashSet<>();
 
+    @OneToMany(mappedBy = "sender", cascade = CascadeType.ALL)
+    private Set<Message> messagesSent = new HashSet<>();
+
+    @OneToMany(mappedBy = "receiver", cascade = CascadeType.ALL)
+    private Set<Message> messagesReceived = new HashSet<>();
 }
