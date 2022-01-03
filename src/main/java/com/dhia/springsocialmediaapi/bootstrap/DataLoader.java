@@ -57,6 +57,8 @@ public class DataLoader implements CommandLineRunner {
                 passwordEncoder.encode("foo"),
                 roles,
                 new HashSet<>(),
+                new HashSet<>(),
+                new HashSet<>(),
                 new HashSet<>());
 
 
@@ -71,6 +73,8 @@ public class DataLoader implements CommandLineRunner {
                 passwordEncoder.encode("user2"),
                 rolesUser2,
                 new HashSet<>(),
+                new HashSet<>(),
+                new HashSet<>(),
                 new HashSet<>());
 
 
@@ -83,6 +87,8 @@ public class DataLoader implements CommandLineRunner {
                 "user3@email.com",
                 passwordEncoder.encode("user3"),
                 rolesUser3,
+                new HashSet<>(),
+                new HashSet<>(),
                 new HashSet<>(),
                 new HashSet<>());
 

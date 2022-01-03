@@ -57,15 +57,15 @@ public class CommentController {
     }
 
 //    @CrossOrigin
-//    @MessageMapping("/hello")
+//    @MessageMapping("")
 //    public void sendMessage() {
 //        System.out.println("called");
 //        simpMessagingTemplate.convertAndSend("/topic/greetings", "test");
 //    }
 
-//    @MessageMapping("/hello")
+//    @MessageMapping("")
 //    @CrossOrigin
-//    @SendTo("/topic/greetings")
+//    @SendTo("/topic")
 //    public String greeting() throws Exception {
 //        Thread.sleep(1000); // simulated delay
 //        return "test from server";
