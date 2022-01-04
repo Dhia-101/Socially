@@ -50,9 +50,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/swagger-ui.html").permitAll()
                 .antMatchers("/webjars/**").permitAll()
                 .antMatchers("/h2-console/**").permitAll()
-        .anyRequest().permitAll();
+                .antMatchers("/chat/**").permitAll()
+        .anyRequest().authenticated();
         http.headers().frameOptions().disable();
-//        http.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
+        http.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
     }
 
     @Bean
